@@ -277,35 +277,35 @@
                 
                 <h2 id="如何发布文章"><a href="#如何发布文章" class="headerlink" title="如何发布文章"></a>如何发布文章</h2><p>本篇文章的主题是，如何发布文章教程的教学</p>
 <h3 id="1-md文档的创建"><a href="#1-md文档的创建" class="headerlink" title="1.md文档的创建"></a>1.md文档的创建</h3><p>首先需要在在本博客的根目录下，打开 Open Git Bash Here ，进入该视图后，输入命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hexo new post &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">npx hexo <span class="hljs-built_in">new</span> <span class="hljs-built_in">post</span> <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>其中，”My New Post”需要替换为你的文章名</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xue&#x27;zi&#x27;qing@xkkjjjj MINGW64 /e/MyBlog</span><br><span class="line">$ npx hexo new post &quot;Publish article tutorials&quot;</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Created: E:\MyBlog\source\_posts\Publish-article-tutorials.md</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">xu<span class="hljs-string">e&#x27;zi&#x27;</span>qing@xkkjjjj MINGW64 /e/MyBlog<br>$ npx hexo <span class="hljs-built_in">new</span> post &quot;Publish article tutorials&quot;<br><span class="hljs-keyword">INFO</span>  Validating config<br><span class="hljs-keyword">INFO</span>  Created: E:\MyBlog\source\_posts\Publish-article-tutorials.md<br></code></pre></td></tr></table></figure>
 
 <h3 id="2-静态文件的生成"><a href="#2-静态文件的生成" class="headerlink" title="2.静态文件的生成"></a>2.静态文件的生成</h3><p>在文章编辑完后，将md文件保存，继续回到博客的根目录下，打开Open Git Bash Here，输入以下命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hexo generate</span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog">npx hexo <span class="hljs-keyword">generate</span><br></code></pre></td></tr></table></figure>
 
 <p>将编辑完的md文件生成静态文件</p>
 <h3 id="3-本地预览"><a href="#3-本地预览" class="headerlink" title="3.本地预览"></a>3.本地预览</h3><p>在编辑完后可以输入命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx hexo generate</span><br><span class="line">npx hexo server</span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs verilog">npx hexo <span class="hljs-keyword">generate</span><br>npx hexo server<br></code></pre></td></tr></table></figure>
 
 <p>进行本地部署预览，默认情况下，本地服务器会在 <code>http://localhost:4000</code> 地址运行。你可以在浏览器中访问这个地址，查看你的博客文章在本地的显示效果。</p>
 <h3 id="4-线上部署"><a href="#4-线上部署" class="headerlink" title="4.线上部署"></a>4.线上部署</h3><p>在预览后没有问题之后，输入命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx hexo clean</span><br><span class="line">npx hexo generate</span><br><span class="line">npx hexo deploy</span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs verilog">npx hexo clean<br>npx hexo <span class="hljs-keyword">generate</span><br>npx hexo deploy<br></code></pre></td></tr></table></figure>
 
 <p>第一条命令是清理 Hexo 生成的缓存文件（<code>db.json</code>）和已生成的静态文件（<code>public</code> 文件夹和 <code>.deploy</code> 文件夹）。</p>
 <p>第二条命令是生成静态文件，这些文件会被放置在 <code>public</code> 文件夹中。</p>
 <p>第三条命令是将生成的静态文件部署到配置好的平台。</p>
 <h3 id="5-线上打开"><a href="#5-线上打开" class="headerlink" title="5.线上打开"></a>5.线上打开</h3><p>在部署完成后，等待一段时间在浏览器中输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://xzq-beginner.github.io</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">https:</span><span class="hljs-comment">//xzq-beginner.github.io</span><br></code></pre></td></tr></table></figure>
 
 <p>便可以查看自己所发的文档</p>
 <h3 id="6-遇到的问题"><a href="#6-遇到的问题" class="headerlink" title="6.遇到的问题"></a>6.遇到的问题</h3><p>如果在进行线上部署时，遇到以下情况</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nothing to commit, working tree clean</span><br><span class="line">fatal: unable to access &#x27;https://github.com/Xzq-beginner/Xzq-beginner.github.io.git/&#x27;: Failed to connect to github.com port 443 after 21044 ms: Couldn&#x27;t connect to server</span><br><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Spawn failed</span><br><span class="line">    at ChildProcess.&lt;anonymous&gt; (E:\MyBlog\node_modules\hexo-deployer-git\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">    at ChildProcess.emit (node:events:524:28)</span><br><span class="line">    at cp.emit (E:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">    at ChildProcess._handle.onexit (node:internal/child_process:293:12)</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">nothing</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">commit</span>, working tree clean<br>fatal: unable <span class="hljs-keyword">to</span> <span class="hljs-keyword">access</span> <span class="hljs-string">&#x27;https://github.com/Xzq-beginner/Xzq-beginner.github.io.git/&#x27;</span>: Failed <span class="hljs-keyword">to</span> <span class="hljs-keyword">connect</span> <span class="hljs-keyword">to</span> github.com port <span class="hljs-number">443</span> <span class="hljs-keyword">after</span> <span class="hljs-number">21044</span> ms: Couldn<span class="hljs-string">&#x27;t connect to server</span><br><span class="hljs-string">FATAL Something&#x27;</span>s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html<br>Error: Spawn failed<br>    at ChildProcess.&lt;anonymous&gt; (E:\MyBlog\node_modules\hexo-deployer-git\node_modules\hexo-util\lib\spawn.js:<span class="hljs-number">51</span>:<span class="hljs-number">21</span>)<br>    at ChildProcess.emit (node:events:<span class="hljs-number">524</span>:<span class="hljs-number">28</span>)<br>    at cp.emit (E:\MyBlog\node_modules\<span class="hljs-keyword">cross</span>-spawn\lib\enoent.js:<span class="hljs-number">34</span>:<span class="hljs-number">29</span>)<br>    at ChildProcess._handle.onexit (node:<span class="hljs-type">internal</span>/child_process:<span class="hljs-number">293</span>:<span class="hljs-number">12</span>)<br></code></pre></td></tr></table></figure>
 
 <p>这是因为国内网络环境下，对github的访问不是很顺畅，通常等待一段时间在尝试或者多尝试几次就可以成功。</p>
 <h3 id="7-成功上传"><a href="#7-成功上传" class="headerlink" title="7.成功上传"></a>7.成功上传</h3><p>当出现以下界面是，则表示上传成功</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line">Everything up-to-date</span><br><span class="line">branch &#x27;master&#x27; set up to track &#x27;https://github.com/Xzq-beginner/Xzq-beginner.github.io.git/main&#x27;.</span><br><span class="line">INFO  Deploy done: git</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">On</span> branch master<br><span class="hljs-keyword">nothing</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">commit</span>, working tree clean<br>Everything up-<span class="hljs-keyword">to</span>-<span class="hljs-type">date</span><br>branch <span class="hljs-string">&#x27;master&#x27;</span> <span class="hljs-keyword">set</span> up <span class="hljs-keyword">to</span> track <span class="hljs-string">&#x27;https://github.com/Xzq-beginner/Xzq-beginner.github.io.git/main&#x27;</span>.<br><span class="hljs-keyword">INFO</span>  Deploy done: git<br></code></pre></td></tr></table></figure>
 
 <p>以上便是本文章的内容。</p>
 
@@ -370,9 +370,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/08/%E6%B5%8B%E8%AF%95%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%80%EF%BC%89/" title="测试文档（一）">
+                      <a href="/2025/02/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%88%9B%E5%BB%BA%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/" title="数据结构-创建动态数组">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">测试文档（一）</span>
+                        <span class="hidden-mobile">数据结构-创建动态数组</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
