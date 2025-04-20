@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Manim教程（一）</title>
+    <link href="/2025/04/20/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/"/>
+    <url>/2025/04/20/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Manim教程-相关依赖安装"><a href="#Manim教程-相关依赖安装" class="headerlink" title="Manim教程-相关依赖安装"></a>Manim教程-相关依赖安装</h1><p>​本章的内容是ffmpeg的安装教程</p><h2 id="ffmpeg安装"><a href="#ffmpeg安装" class="headerlink" title="ffmpeg安装"></a>ffmpeg安装</h2><p>​首先在浏览器进入官方页面<strong><a href="https://ffmpeg.org/">https://ffmpeg.org/</a></strong>，在主页面会看见下载标志<img src="/../images/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/1.png" alt="1"></p><p>​点击后会跳转到选择页面，以windows系统为例，上方是下载源代码，这里我们选择下方的<strong>Windows builds from gyan.dev</strong></p><p><img src="/../images/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/2.png" alt="2"></p><p>​点击之后，我们选择<strong>ffmpeg-git-full.7z</strong>，下载完整版</p><p><img src="/../images/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/3.png" alt="3"></p><p>​等待压缩包下载完成，我们根据自己电脑选择一个合适的位置进行解压，因为我需要搭配python一起使用，所以我放在了我的E盘内，这里可以根据自己的需要调整。</p><p>​解压完毕之后，目录如下：</p><p><img src="/../images/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/4.png" alt="4"></p><p>​我们打开<strong>bin</strong>目录，复制文件夹地址</p><p><img src="/../images/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/5.png" alt="5"></p><p>​在桌面左下角搜索环境变量设置</p><p><img src="/../images/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/6.png" alt="6"></p><p>​打开后依次点击<strong>环境变量</strong>，选择系统变量中的<strong>Path</strong>,点击新建，输入刚才复制的地址</p><p><img src="/../images/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/7.png" alt="7"></p><p>​此时，我们打开命令行，输入</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -version<br></code></pre></td></tr></table></figure><p>​如果显示</p><p><img src="/../images/Manim%E6%95%99%E7%A8%8B-ffmpeg%E5%AE%89%E8%A3%85/8.png" alt="8"></p><p>​那么便证明已经安装成功，如果这篇文章对你有帮助，希望你可以在别人遇到此类困难时予以帮助，或者推荐本博客，谢谢！</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Python</category>
+      
+      <category>Manim</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Pyhton</tag>
+      
+      <tag>Manim</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>数据结构-创建动态数组</title>
     <link href="/2025/02/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%88%9B%E5%BB%BA%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/"/>
     <url>/2025/02/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%88%9B%E5%BB%BA%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/</url>
