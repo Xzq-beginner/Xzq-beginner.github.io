@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="小小怪将军">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="遗传算法（一）​	遗传算法（Genetic Algorithm，GA）是一种模拟生物进化过程的搜索启发式算法，在多个领域都有广泛应用。 遗传算法的基本介绍起源和灵感来源​	遗传算法是由美国学者 John Holland 在 20 世纪 70 年代提出。它的主要灵感来源于达尔文的生物进化论。在生物进化过程中，物种通过遗传、变异和自然选择等机制不断进化，适应环境的变化。遗传算法将这种自然进化过程抽象出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遗传算法（一）">
+<meta property="og:url" content="http://example.com/2025/04/26/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="MyBlog">
+<meta property="og:description" content="遗传算法（一）​	遗传算法（Genetic Algorithm，GA）是一种模拟生物进化过程的搜索启发式算法，在多个领域都有广泛应用。 遗传算法的基本介绍起源和灵感来源​	遗传算法是由美国学者 John Holland 在 20 世纪 70 年代提出。它的主要灵感来源于达尔文的生物进化论。在生物进化过程中，物种通过遗传、变异和自然选择等机制不断进化，适应环境的变化。遗传算法将这种自然进化过程抽象出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/1.png">
+<meta property="article:published_time" content="2025-04-26T12:36:21.000Z">
+<meta property="article:modified_time" content="2025-04-26T12:50:57.257Z">
+<meta property="article:author" content="小小怪将军">
+<meta property="article:tag" content="Pyhton">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>遗传算法（一） - MyBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":".","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>薛子青的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="遗传算法（一）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        小小怪将军
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-26 20:36" pubdate>
+          2025年4月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">遗传算法（一）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="遗传算法（一）"><a href="#遗传算法（一）" class="headerlink" title="遗传算法（一）"></a>遗传算法（一）</h1><p>​	遗传算法（Genetic Algorithm，GA）是一种模拟生物进化过程的搜索启发式算法，在多个领域都有广泛应用。</p>
+<h2 id="遗传算法的基本介绍"><a href="#遗传算法的基本介绍" class="headerlink" title="遗传算法的基本介绍"></a>遗传算法的基本介绍</h2><h3 id="起源和灵感来源"><a href="#起源和灵感来源" class="headerlink" title="起源和灵感来源"></a>起源和灵感来源</h3><p>​	遗传算法是由美国学者 John Holland 在 20 世纪 70 年代提出。它的主要灵感来源于达尔文的生物进化论。在生物进化过程中，物种通过遗传、变异和自然选择等机制不断进化，适应环境的变化。遗传算法将这种自然进化过程抽象出来，用于解决优化问题。</p>
+<h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><ul>
+<li>遗传算法将问题的解编码为染色体，通常用二进制编码，也可以采用其他编码方式，如实数编码等。这些染色体构成一个种群，种群的大小是预先设定的。算法开始时，会随机初始化一个种群。</li>
+<li>例如，在解决函数最大值问题时，每个染色体代表一个可能的解（即函数的一个自变量取值）。</li>
+<li>然后计算每个染色体的适应度，适应度函数根据具体问题来定义，它反映了染色体所代表的解的质量。在寻找函数最大值的问题中，适应度函数通常就是目标函数本身。</li>
+<li>接下来进行选择操作，根据适应度的大小来选择染色体，适应度越高的染色体被选中的概率越大。这类似于生物进化中的 “适者生存”，比如有三个染色体，其适应度分别为 1、2、3，它们被选中的概率可能分别为 1&#x2F;6、2&#x2F;6、3&#x2F;6。</li>
+<li>之后是交叉操作，这是遗传算法的核心操作之一。随机选择两个染色体进行交叉，通过交换部分基因来产生新的染色体。以二进制编码为例，假设两个染色体为 “0110” 和 “1100”，在某个随机位置（如第 2 位）进行交叉，得到两个新的染色体 “0100” 和 “1110”。</li>
+<li>变异操作是另一个重要操作。它以一定的概率随机改变染色体中的某些基因。例如，对二进制染色体 “0110” 进行变异，可能将第 3 位的 “1” 变为 “0”，得到新的染色体 “0100”。变异操作可以增加种群的多样性，避免算法过早收敛到局部最优解。</li>
+</ul>
+<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><ul>
+<li>初始化种群：随机生成一定数量的染色体。</li>
+<li>适应度计算：计算种群中每个染色体的适应度。</li>
+<li>选择操作：根据适应度选择染色体，生成新的种群。</li>
+<li>交叉操作：对新种群中的染色体进行交叉操作，产生后代染色体。</li>
+<li>变异操作：对后代染色体进行变异操作。</li>
+<li>重复适应度计算、选择、交叉和变异操作，直到满足终止条件（如达到最大迭代次数、找到满意解等）。</li>
+</ul>
+<h2 id="遗传算法的适应范围"><a href="#遗传算法的适应范围" class="headerlink" title="遗传算法的适应范围"></a>遗传算法的适应范围</h2><h3 id="组合优化问题"><a href="#组合优化问题" class="headerlink" title="组合优化问题"></a>组合优化问题</h3><ul>
+<li>遗传算法在旅行商问题（TSP）中应用广泛。TSP 问题是要找出经过多个城市的最短路径，每个城市只能经过一次。例如，有 10 个城市，要找到一条最短的巡回路线。遗传算法可以将城市的排列顺序编码为染色体，通过选择、交叉和变异操作来寻找最优路径。它的优势在于能够处理大规模的城市数目，并且可以避免陷入局部最优解。</li>
+<li>在背包问题中，给定一组物品，每种物品都有重量和价值，要在不超过背包容量的情况下选择物品，使得总价值最大。遗传算法可以有效地解决这个问题，将物品的选择状态（选或不选）编码为染色体，通过适应度函数（总价值）来引导进化过程。</li>
+</ul>
+<h3 id="机器学习领域"><a href="#机器学习领域" class="headerlink" title="机器学习领域"></a>机器学习领域</h3><ul>
+<li>在神经网络的权值优化方面，遗传算法可以作为一种有效的优化方法。神经网络的权值众多，传统的梯度下降法可能会陷入局部最优。遗传算法可以将权值编码为染色体，通过进化过程来寻找使神经网络性能最优的权值组合。</li>
+<li>对于特征选择问题，从大量的特征中选择最有用的特征子集用于机器学习模型的训练。遗传算法可以将特征的选择状态编码为染色体，适应度函数可以基于模型在选定特征下的性能（如分类准确率）来评估，从而选择出最佳的特征子集。</li>
+</ul>
+<h3 id="工程设计优化"><a href="#工程设计优化" class="headerlink" title="工程设计优化"></a>工程设计优化</h3><ul>
+<li>在结构设计中，如建筑物的框架设计，要优化结构的强度、重量等指标。遗传算法可以用于优化结构的尺寸、材料分布等参数。例如，在设计桥梁时，可以将桥梁各部分的尺寸（如梁的高度、宽度等）编码为染色体，适应度函数可以是结构的承载能力和自重的综合评价指标，通过遗传算法来寻找最优的设计方案。</li>
+<li>在航空航天领域，飞机机翼的设计优化也可以应用遗传算法。机翼的形状参数（如翼型、展弦比等）是设计变量，通过遗传算法来优化这些参数，以提高机翼的升力、降低阻力等。</li>
+</ul>
+<h3 id="调度问题"><a href="#调度问题" class="headerlink" title="调度问题"></a>调度问题</h3><ul>
+<li>在生产调度中，企业需要安排生产任务的顺序，使生产周期最短、资源利用率最高。遗传算法可以将生产任务的调度顺序编码为染色体，适应度函数可以是生产周期或资源利用率等指标。例如，在流水车间调度问题中，有多个加工任务和多台机器，每个任务需要在不同的机器上按一定顺序加工。遗传算法可以有效地解决这种复杂的调度问题。</li>
+<li>在任务分配问题中，如将多个任务分配给多个处理器，使任务完成时间最短。遗传算法可以将任务分配方案编码为染色体，通过进化过程来寻找最优的分配方案。</li>
+</ul>
+<h2 id="遗传算法第一个案例"><a href="#遗传算法第一个案例" class="headerlink" title="遗传算法第一个案例"></a>遗传算法第一个案例</h2><p>​	本案例数据来自于哔哩哔哩博主<strong>数学建模BOOM</strong>，需要学习Matlab实现的可以搜索,下面开始解析Python代码实现</p>
+<h3 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br></code></pre></td></tr></table></figure>
+
+<p>​	导入所需的库：</p>
+<ul>
+<li><code>numpy</code>：用于数值计算，如数组操作、随机数生成等。</li>
+<li><code>matplotlib.pyplot</code>：用于绘制图形，如迭代过程中的最优适应度曲线。</li>
+</ul>
+<h3 id="适应度函数"><a href="#适应度函数" class="headerlink" title="适应度函数"></a>适应度函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">fitness</span>(<span class="hljs-params">number, worth, cubage, volume, alpha</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    计算当前方案的适应度，并判断是否进行惩罚</span><br><span class="hljs-string">    :param number: 当前方案的物品选择</span><br><span class="hljs-string">    :param worth: 物品的价值列表</span><br><span class="hljs-string">    :param cubage: 物品的体积列表</span><br><span class="hljs-string">    :param volume: 背包的最大容量</span><br><span class="hljs-string">    :param alpha: 惩罚系数</span><br><span class="hljs-string">    :return: 适应度值</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 当前方案的价值</span><br>    fit = np.<span class="hljs-built_in">sum</span>(number * worth)<br>    <span class="hljs-comment"># 当前方案的总体积</span><br>    total_volume = np.<span class="hljs-built_in">sum</span>(number * cubage)<br>    <span class="hljs-comment"># 如果总体积超过背包容量，进行惩罚</span><br>    <span class="hljs-keyword">if</span> total_volume &gt; volume:<br>        fit = fit - alpha * (total_volume - volume)<br>    <span class="hljs-keyword">return</span> fit<br></code></pre></td></tr></table></figure>
+
+<p>​	计算个体（背包中物品的选取方案）的适应度：</p>
+<ul>
+<li><code>number</code> 表示个体对物品的选择情况（0 或 1 组成的数组，1 代表选取该物品，0 代表不选取）。</li>
+<li>计算个体所选物品的总价值 <code>fit</code> 和总体积 <code>total_volume</code>。</li>
+<li>若总体积超过背包容量，对适应度进行惩罚，惩罚后的适应度为原适应度减去惩罚系数 <code>alpha</code> 乘以超出的体积。</li>
+</ul>
+<h3 id="寻找最优个体"><a href="#寻找最优个体" class="headerlink" title="寻找最优个体"></a>寻找最优个体</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_max</span>(<span class="hljs-params">num_pop, population, worth, cubage, volume, alpha</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    寻找当前种群中的最优个体</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :param worth: 物品的价值列表</span><br><span class="hljs-string">    :param cubage: 物品的体积列表</span><br><span class="hljs-string">    :param volume: 背包的最大容量</span><br><span class="hljs-string">    :param alpha: 惩罚系数</span><br><span class="hljs-string">    :return: 每个个体的适应度、最大适应度、最优个体</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 计算每个个体的适应度</span><br>    fit = np.zeros(num_pop)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_pop):<br>        fit[i] = fitness(population[i, :], worth, cubage, volume, alpha)<br>    <span class="hljs-comment"># 找到最大适应度及其对应的个体</span><br>    max_fit = np.<span class="hljs-built_in">max</span>(fit)<br>    max_index = np.argmax(fit)<br>    fit_best = population[max_index, :].copy()<br>    <span class="hljs-keyword">return</span> fit, max_fit, fit_best<br></code></pre></td></tr></table></figure>
+
+<p>​	在当前种群中寻找最优个体：</p>
+<ul>
+<li>遍历种群中的每个个体，计算其适应度，存储在 <code>fit</code> 数组中。</li>
+<li>找出最大适应度值 <code>max_fit</code> 及其对应的个体索引 <code>max_index</code>，并复制该最优个体 <code>fit_best</code>。</li>
+</ul>
+<h3 id="轮盘赌算法"><a href="#轮盘赌算法" class="headerlink" title="轮盘赌算法"></a>轮盘赌算法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">roulette</span>(<span class="hljs-params">fit, num_pop, population</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    使用轮盘赌算法选择个体</span><br><span class="hljs-string">    :param fit: 当前种群的适应度</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :return: 选中的个体</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 计算选择概率</span><br>    fit_value = fit / np.<span class="hljs-built_in">sum</span>(fit)<br>    <span class="hljs-comment"># 计算累计概率</span><br>    fit_value = np.cumsum(fit_value)<br>    <span class="hljs-comment"># 随机选择个体</span><br>    select_index = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_pop):<br>        r = np.random.rand()<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_pop):<br>            <span class="hljs-keyword">if</span> r &lt; fit_value[j]:<br>                select_index.append(j)<br>                <span class="hljs-keyword">break</span><br>    <span class="hljs-comment"># 返回选中的个体</span><br>    select_population = population[select_index, :].copy()<br>    <span class="hljs-keyword">return</span> select_population<br></code></pre></td></tr></table></figure>
+
+<p>​	采用轮盘赌算法选择个体：</p>
+<ul>
+<li>计算每个个体的选择概率（适应度除以种群适应度总和）。</li>
+<li>计算累计概率。</li>
+<li>每次随机生成一个 0 到 1 的数，根据累计概率确定选中的个体索引，重复该过程直至选出与种群大小相同数量的个体，组成新的选择种群。</li>
+</ul>
+<h3 id="交叉"><a href="#交叉" class="headerlink" title="交叉"></a>交叉</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">cross</span>(<span class="hljs-params">num_obj, num_pop, probability_cross, population</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    对种群进行交叉操作</span><br><span class="hljs-string">    :param num_obj: 物品数量</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param probability_cross: 交叉概率</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :return: 交叉后的种群</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, num_pop - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>):<br>        r = np.random.rand()<br>        <span class="hljs-keyword">if</span> r &lt; probability_cross:<br>            <span class="hljs-comment"># 随机选择交叉点</span><br>            cross_point = np.random.randint(<span class="hljs-number">0</span>, num_obj)<br>            <span class="hljs-comment"># 交换部分基因</span><br>            temp = population[i, cross_point:].copy()<br>            population[i, cross_point:] = population[i + <span class="hljs-number">1</span>, cross_point:].copy()<br>            population[i + <span class="hljs-number">1</span>, cross_point:] = temp.copy()<br>    <span class="hljs-keyword">return</span> population<br></code></pre></td></tr></table></figure>
+
+<p>​	对种群进行单点交叉操作：</p>
+<ul>
+<li>遍历种群中相邻的个体对（步长为 2）。</li>
+<li>对于每对个体，随机生成一个数 <code>r</code>，若小于交叉概率 <code>probability_cross</code>，则随机选择一个交叉点，交换个体在该交叉点之后的基因部分。</li>
+</ul>
+<h3 id="变异"><a href="#变异" class="headerlink" title="变异"></a>变异</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">variation</span>(<span class="hljs-params">num_obj, num_pop, probability_variation, population</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    对种群进行变异操作</span><br><span class="hljs-string">    :param num_obj: 物品数量</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param probability_variation: 变异概率</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :return: 变异后的种群</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_pop):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_obj):<br>            r = np.random.rand()<br>            <span class="hljs-keyword">if</span> r &lt; probability_variation:<br>                <span class="hljs-comment"># 变异操作（取反）</span><br>                population[i, j] = <span class="hljs-number">1</span> - population[i, j]<br>    <span class="hljs-keyword">return</span> population<br></code></pre></td></tr></table></figure>
+
+<p>​	对种群进行变异操作：</p>
+<ul>
+<li>遍历种群中的每个个体的每个基因位。</li>
+<li>对于每个基因位，随机生成一个数 <code>r</code>，若小于变异概率 <code>probability_variation</code>，则对该基因位进行取反操作（即 0 变 1，1 变 0）。</li>
+</ul>
+<h3 id="选择最优"><a href="#选择最优" class="headerlink" title="选择最优"></a>选择最优</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">replacement</span>(<span class="hljs-params">num_pop, population, worth, cubage, volume, alpha, num_obj, probability_cross, probability_variation,</span><br><span class="hljs-params">                trace, t</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    替换操作，保留最优个体</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :param worth: 物品价值</span><br><span class="hljs-string">    :param cubage: 物品体积</span><br><span class="hljs-string">    :param volume: 背包容量</span><br><span class="hljs-string">    :param alpha: 惩罚系数</span><br><span class="hljs-string">    :param num_obj: 物品数量</span><br><span class="hljs-string">    :param probability_cross: 交叉概率</span><br><span class="hljs-string">    :param probability_variation: 变异概率</span><br><span class="hljs-string">    :param trace: 迭代记录</span><br><span class="hljs-string">    :param t: 当前迭代次数</span><br><span class="hljs-string">    :return: 更新后的 trace 和最优个体</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 计算适应度并找到最优个体</span><br>    fit, max_fit, fit_best = find_max(num_pop, population, worth, cubage, volume, alpha)<br>    <span class="hljs-comment"># 选择操作</span><br>    select_population = roulette(fit, num_pop, population)<br>    <span class="hljs-comment"># 交叉操作</span><br>    cross_population = cross(num_obj, num_pop, probability_cross, select_population)<br>    <span class="hljs-comment"># 变异操作</span><br>    variation_population = variation(num_obj, num_pop, probability_variation, cross_population)<br>    <span class="hljs-comment"># 保留最优个体</span><br>    variation_population[<span class="hljs-number">0</span>, :] = fit_best.copy()<br>    <span class="hljs-comment"># 更新种群</span><br>    population = variation_population.copy()<br>    <span class="hljs-comment"># 记录当前最优适应度</span><br>    trace[t] = max_fit<br>    <span class="hljs-keyword">return</span> trace, population, fit_best<br></code></pre></td></tr></table></figure>
+
+<p>​	进行替换操作，更新种群并保留最优个体：</p>
+<ul>
+<li>调用 <code>find_max</code> 函数计算当前种群中每个个体的适应度，找到最优个体。</li>
+<li>对种群依次进行选择、交叉、变异操作，生成新的种群。</li>
+<li>将原种群中的最优个体复制到新种群的第一个位置，以保留最优个体。</li>
+<li>更新种群为新种群，并记录当前迭代的最优适应度到 <code>trace</code> 中。</li>
+</ul>
+<h3 id="遗传算法主函数"><a href="#遗传算法主函数" class="headerlink" title="遗传算法主函数"></a>遗传算法主函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">ga</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    遗传算法主函数</span><br><span class="hljs-string">    :return: 迭代记录</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 参数设置</span><br>    num_pop = <span class="hljs-number">80</span>  <span class="hljs-comment"># 种群大小</span><br>    num_obj = <span class="hljs-number">12</span>  <span class="hljs-comment"># 物品数量</span><br>    volume = <span class="hljs-number">350</span>  <span class="hljs-comment"># 背包容量</span><br>    probability_cross = <span class="hljs-number">0.85</span>  <span class="hljs-comment"># 交叉概率</span><br>    probability_variation = <span class="hljs-number">0.02</span>  <span class="hljs-comment"># 变异概率</span><br>    genetic_time = <span class="hljs-number">150</span>  <span class="hljs-comment"># 迭代次数</span><br>    cubage = np.array([<span class="hljs-number">78</span>, <span class="hljs-number">39</span>, <span class="hljs-number">90</span>, <span class="hljs-number">82</span>, <span class="hljs-number">61</span>, <span class="hljs-number">52</span>, <span class="hljs-number">12</span>, <span class="hljs-number">37</span>, <span class="hljs-number">49</span>, <span class="hljs-number">55</span>, <span class="hljs-number">64</span>, <span class="hljs-number">8</span>])  <span class="hljs-comment"># 物品体积</span><br>    worth = np.array([<span class="hljs-number">64</span>, <span class="hljs-number">37</span>, <span class="hljs-number">22</span>, <span class="hljs-number">41</span>, <span class="hljs-number">76</span>, <span class="hljs-number">34</span>, <span class="hljs-number">22</span>, <span class="hljs-number">21</span>, <span class="hljs-number">10</span>, <span class="hljs-number">57</span>, <span class="hljs-number">32</span>, <span class="hljs-number">12</span>])  <span class="hljs-comment"># 物品价值</span><br>    alpha = <span class="hljs-number">5</span>  <span class="hljs-comment"># 惩罚系数</span><br><br>    <span class="hljs-comment"># 初始化种群</span><br>    population = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, size=(num_pop, num_obj))<br>    <span class="hljs-comment"># 记录迭代过程</span><br>    trace = np.zeros(genetic_time)<br>    <span class="hljs-comment"># 迭代过程</span><br>    <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(genetic_time):<br>        <span class="hljs-comment"># 替换操作并记录最优适应度</span><br>        trace, population, _ = replacement(num_pop, population, worth, cubage, volume, alpha, num_obj,<br>                                           probability_cross, probability_variation, trace, t)<br>    <span class="hljs-keyword">return</span> trace<br></code></pre></td></tr></table></figure>
+
+<p>​	遗传算法主函数：</p>
+<ul>
+<li>设置遗传算法的参数，如种群大小、物品数量、背包容量等。</li>
+<li>初始化种群，随机生成一个由 0 和 1 组成的二维数组，表示各个个体对物品的选取方案。</li>
+<li>初始化迭代记录数组 <code>trace</code>，用于记录每次迭代的最优适应度。</li>
+<li>进行迭代操作，在每次迭代中调用 <code>replacement</code> 函数完成种群的更新、选择、交叉、变异以及最优个体保留等操作，并记录每次迭代的最优适应度。</li>
+<li>最后返回迭代记录 <code>trace</code>。</li>
+</ul>
+<h3 id="绘制结果"><a href="#绘制结果" class="headerlink" title="绘制结果"></a>绘制结果</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">plot_result</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    绘制结果</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;SimHei&#x27;</span>]  <span class="hljs-comment"># 设置中文显示为黑体</span><br>    plt.rcParams[<span class="hljs-string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="hljs-literal">False</span>  <span class="hljs-comment"># 正确显示负号</span><br>    trace = ga()  <span class="hljs-comment"># 运行遗传算法</span><br>    <span class="hljs-comment"># 绘制迭代曲线</span><br>    plt.plot(trace)<br>    plt.xlabel(<span class="hljs-string">&#x27;迭代次数&#x27;</span>)<br>    plt.ylabel(<span class="hljs-string">&#x27;最优适应度&#x27;</span>)<br>    plt.title(<span class="hljs-string">&#x27;遗传算法迭代过程&#x27;</span>)<br>    plt.show()<br></code></pre></td></tr></table></figure>
+
+<p>​	绘制遗传算法的迭代结果：</p>
+<ul>
+<li>设置 matplotlib 的字体参数，以便正确显示中文和负号。</li>
+<li>调用 <code>ga</code> 函数运行遗传算法，获取迭代记录 <code>trace</code>。</li>
+<li>使用 matplotlib 绘制迭代次数与最优适应度之间的曲线图，横轴为迭代次数，纵轴为最优适应度，标题为 “遗传算法迭代过程”。</li>
+</ul>
+<h3 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    plot_result()<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
+
+<p>​	定义主函数 <code>main</code>，调用 <code>plot_result</code> 函数来运行遗传算法并绘制结果。当该脚本作为主程序运行时，执行 <code>main</code> 函数，从而启动整个遗传算法求解背包问题并展示结果的流程。</p>
+<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="/../images/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/1.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<h2 id="代码全文"><a href="#代码全文" class="headerlink" title="代码全文"></a>代码全文</h2><p>​	如果本篇博客对你有帮助，希望在别人遇到这类问题时你可以给予解答，或者推荐本博客。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-comment"># @Time    : 2025/4/26 17:11</span><br><span class="hljs-comment"># @Author  : xue&#x27;zi&#x27;qing</span><br><span class="hljs-comment"># @File    : GA.py</span><br><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">利用遗传算法解决背包问题</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br><br><span class="hljs-comment"># 适应度函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fitness</span>(<span class="hljs-params">number, worth, cubage, volume, alpha</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    计算当前方案的适应度，并判断是否进行惩罚</span><br><span class="hljs-string">    :param number: 当前方案的物品选择</span><br><span class="hljs-string">    :param worth: 物品的价值列表</span><br><span class="hljs-string">    :param cubage: 物品的体积列表</span><br><span class="hljs-string">    :param volume: 背包的最大容量</span><br><span class="hljs-string">    :param alpha: 惩罚系数</span><br><span class="hljs-string">    :return: 适应度值</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 当前方案的价值</span><br>    fit = np.<span class="hljs-built_in">sum</span>(number * worth)<br>    <span class="hljs-comment"># 当前方案的总体积</span><br>    total_volume = np.<span class="hljs-built_in">sum</span>(number * cubage)<br>    <span class="hljs-comment"># 如果总体积超过背包容量，进行惩罚</span><br>    <span class="hljs-keyword">if</span> total_volume &gt; volume:<br>        fit = fit - alpha * (total_volume - volume)<br>    <span class="hljs-keyword">return</span> fit<br><br><br><span class="hljs-comment"># 寻找最优个体</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_max</span>(<span class="hljs-params">num_pop, population, worth, cubage, volume, alpha</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    寻找当前种群中的最优个体</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :param worth: 物品的价值列表</span><br><span class="hljs-string">    :param cubage: 物品的体积列表</span><br><span class="hljs-string">    :param volume: 背包的最大容量</span><br><span class="hljs-string">    :param alpha: 惩罚系数</span><br><span class="hljs-string">    :return: 每个个体的适应度、最大适应度、最优个体</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 计算每个个体的适应度</span><br>    fit = np.zeros(num_pop)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_pop):<br>        fit[i] = fitness(population[i, :], worth, cubage, volume, alpha)<br>    <span class="hljs-comment"># 找到最大适应度及其对应的个体</span><br>    max_fit = np.<span class="hljs-built_in">max</span>(fit)<br>    max_index = np.argmax(fit)<br>    fit_best = population[max_index, :].copy()<br>    <span class="hljs-keyword">return</span> fit, max_fit, fit_best<br><br><br><span class="hljs-comment"># 轮盘赌算法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">roulette</span>(<span class="hljs-params">fit, num_pop, population</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    使用轮盘赌算法选择个体</span><br><span class="hljs-string">    :param fit: 当前种群的适应度</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :return: 选中的个体</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 计算选择概率</span><br>    fit_value = fit / np.<span class="hljs-built_in">sum</span>(fit)<br>    <span class="hljs-comment"># 计算累计概率</span><br>    fit_value = np.cumsum(fit_value)<br>    <span class="hljs-comment"># 随机选择个体</span><br>    select_index = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_pop):<br>        r = np.random.rand()<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_pop):<br>            <span class="hljs-keyword">if</span> r &lt; fit_value[j]:<br>                select_index.append(j)<br>                <span class="hljs-keyword">break</span><br>    <span class="hljs-comment"># 返回选中的个体</span><br>    select_population = population[select_index, :].copy()<br>    <span class="hljs-keyword">return</span> select_population<br><br><br><span class="hljs-comment"># 交叉操作</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cross</span>(<span class="hljs-params">num_obj, num_pop, probability_cross, population</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    对种群进行交叉操作</span><br><span class="hljs-string">    :param num_obj: 物品数量</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param probability_cross: 交叉概率</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :return: 交叉后的种群</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, num_pop - <span class="hljs-number">1</span>, <span class="hljs-number">2</span>):<br>        r = np.random.rand()<br>        <span class="hljs-keyword">if</span> r &lt; probability_cross:<br>            <span class="hljs-comment"># 随机选择交叉点</span><br>            cross_point = np.random.randint(<span class="hljs-number">0</span>, num_obj)<br>            <span class="hljs-comment"># 交换部分基因</span><br>            temp = population[i, cross_point:].copy()<br>            population[i, cross_point:] = population[i + <span class="hljs-number">1</span>, cross_point:].copy()<br>            population[i + <span class="hljs-number">1</span>, cross_point:] = temp.copy()<br>    <span class="hljs-keyword">return</span> population<br><br><br><span class="hljs-comment"># 变异操作</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">variation</span>(<span class="hljs-params">num_obj, num_pop, probability_variation, population</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    对种群进行变异操作</span><br><span class="hljs-string">    :param num_obj: 物品数量</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param probability_variation: 变异概率</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :return: 变异后的种群</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_pop):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_obj):<br>            r = np.random.rand()<br>            <span class="hljs-keyword">if</span> r &lt; probability_variation:<br>                <span class="hljs-comment"># 变异操作（取反）</span><br>                population[i, j] = <span class="hljs-number">1</span> - population[i, j]<br>    <span class="hljs-keyword">return</span> population<br><br><br><span class="hljs-comment"># 替换操作</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">replacement</span>(<span class="hljs-params">num_pop, population, worth, cubage, volume, alpha, num_obj, probability_cross, probability_variation,</span><br><span class="hljs-params">                trace, t</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    替换操作，保留最优个体</span><br><span class="hljs-string">    :param num_pop: 种群大小</span><br><span class="hljs-string">    :param population: 当前种群</span><br><span class="hljs-string">    :param worth: 物品价值</span><br><span class="hljs-string">    :param cubage: 物品体积</span><br><span class="hljs-string">    :param volume: 背包容量</span><br><span class="hljs-string">    :param alpha: 惩罚系数</span><br><span class="hljs-string">    :param num_obj: 物品数量</span><br><span class="hljs-string">    :param probability_cross: 交叉概率</span><br><span class="hljs-string">    :param probability_variation: 变异概率</span><br><span class="hljs-string">    :param trace: 迭代记录</span><br><span class="hljs-string">    :param t: 当前迭代次数</span><br><span class="hljs-string">    :return: 更新后的 trace 和最优个体</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 计算适应度并找到最优个体</span><br>    fit, max_fit, fit_best = find_max(num_pop, population, worth, cubage, volume, alpha)<br>    <span class="hljs-comment"># 选择操作</span><br>    select_population = roulette(fit, num_pop, population)<br>    <span class="hljs-comment"># 交叉操作</span><br>    cross_population = cross(num_obj, num_pop, probability_cross, select_population)<br>    <span class="hljs-comment"># 变异操作</span><br>    variation_population = variation(num_obj, num_pop, probability_variation, cross_population)<br>    <span class="hljs-comment"># 保留最优个体</span><br>    variation_population[<span class="hljs-number">0</span>, :] = fit_best.copy()<br>    <span class="hljs-comment"># 更新种群</span><br>    population = variation_population.copy()<br>    <span class="hljs-comment"># 记录当前最优适应度</span><br>    trace[t] = max_fit<br>    <span class="hljs-keyword">return</span> trace, population, fit_best<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">ga</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    遗传算法主函数</span><br><span class="hljs-string">    :return: 迭代记录</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 参数设置</span><br>    num_pop = <span class="hljs-number">80</span>  <span class="hljs-comment"># 种群大小</span><br>    num_obj = <span class="hljs-number">12</span>  <span class="hljs-comment"># 物品数量</span><br>    volume = <span class="hljs-number">350</span>  <span class="hljs-comment"># 背包容量</span><br>    probability_cross = <span class="hljs-number">0.85</span>  <span class="hljs-comment"># 交叉概率</span><br>    probability_variation = <span class="hljs-number">0.02</span>  <span class="hljs-comment"># 变异概率</span><br>    genetic_time = <span class="hljs-number">150</span>  <span class="hljs-comment"># 迭代次数</span><br>    cubage = np.array([<span class="hljs-number">78</span>, <span class="hljs-number">39</span>, <span class="hljs-number">90</span>, <span class="hljs-number">82</span>, <span class="hljs-number">61</span>, <span class="hljs-number">52</span>, <span class="hljs-number">12</span>, <span class="hljs-number">37</span>, <span class="hljs-number">49</span>, <span class="hljs-number">55</span>, <span class="hljs-number">64</span>, <span class="hljs-number">8</span>])  <span class="hljs-comment"># 物品体积</span><br>    worth = np.array([<span class="hljs-number">64</span>, <span class="hljs-number">37</span>, <span class="hljs-number">22</span>, <span class="hljs-number">41</span>, <span class="hljs-number">76</span>, <span class="hljs-number">34</span>, <span class="hljs-number">22</span>, <span class="hljs-number">21</span>, <span class="hljs-number">10</span>, <span class="hljs-number">57</span>, <span class="hljs-number">32</span>, <span class="hljs-number">12</span>])  <span class="hljs-comment"># 物品价值</span><br>    alpha = <span class="hljs-number">5</span>  <span class="hljs-comment"># 惩罚系数</span><br><br>    <span class="hljs-comment"># 初始化种群</span><br>    population = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, size=(num_pop, num_obj))<br>    <span class="hljs-comment"># 记录迭代过程</span><br>    trace = np.zeros(genetic_time)<br>    <span class="hljs-comment"># 迭代过程</span><br>    <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(genetic_time):<br>        <span class="hljs-comment"># 替换操作并记录最优适应度</span><br>        trace, population, _ = replacement(num_pop, population, worth, cubage, volume, alpha, num_obj,probability_cross, probability_variation, trace, t)<br>    <span class="hljs-keyword">return</span> trace<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">plot_result</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    绘制结果</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;SimHei&#x27;</span>]  <span class="hljs-comment"># 设置中文显示为黑体</span><br>    plt.rcParams[<span class="hljs-string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="hljs-literal">False</span>  <span class="hljs-comment"># 正确显示负号</span><br>    trace = ga()  <span class="hljs-comment"># 运行遗传算法</span><br>    <span class="hljs-comment"># 绘制迭代曲线</span><br>    plt.plot(trace)<br>    plt.xlabel(<span class="hljs-string">&#x27;迭代次数&#x27;</span>)<br>    plt.ylabel(<span class="hljs-string">&#x27;最优适应度&#x27;</span>)<br>    plt.title(<span class="hljs-string">&#x27;遗传算法迭代过程&#x27;</span>)<br>    plt.show()<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    plot_result()<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Python/Algorithm/" class="category-chain-item">Algorithm</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Pyhton/" class="print-no-link">#Pyhton</a>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>遗传算法（一）</div>
+      <div>http://example.com/2025/04/26/遗传算法（一）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>小小怪将军</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/26/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95/" title="模拟退火算法">
+                        <span class="hidden-mobile">模拟退火算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-love"></i> <span>好好吃饭、认真学习、热爱生活</span> <i class="iconfont icon-love"></i>
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
