@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Resnet-SPPR</title>
+    <link href="/2025/09/22/Resnet-SPPR/"/>
+    <url>/2025/09/22/Resnet-SPPR/</url>
+    
+    <content type="html"><![CDATA[<h1 id="resnet-sppr">Resnet-SPPR</h1><h2 id="总体概览">总体概览</h2><p>本系统采用由 deepsig 公司制作的数据集RML2016.10a[https://github.com/ianblenke/deepsig_dataset]</p><p>本系统可分辨的调制模式由以下十一种：8 个数字调制方式: 8PSK, BPSK,CPFSK, GFSK, PAM4, 16QAM, 64QAM, QPSK；3 个模拟调制方式：AM-DSB, AM-SSB,WBFM</p><p>信噪比范围为：-20dB~18dB,间隔 2dB</p><p>数据集主要配置见下表：</p><table><thead><tr><th style="text-align: left;">配置类型</th><th style="text-align: left;">配置信息</th></tr></thead><tbody><tr><td style="text-align: left;">数据源</td><tdstyle="text-align: left;">数字调制信号：莎士比亚的古腾堡作品；模拟调制信号：连续剧《SerialEpisode》</td></tr><tr><td style="text-align: left;">生成方式</td><td style="text-align: left;">Gnuradio + Python</td></tr><tr><td style="text-align: left;">数据格式</td><td style="text-align: left;">IQ（In-phase andQuadrature）数据格式：2×128</td></tr><tr><td style="text-align: left;">样本总量</td><td style="text-align: left;">220,000 (22 万)</td></tr><tr><td style="text-align: left;">采样率偏移标准偏差</td><td style="text-align: left;">0.01 Hz</td></tr><tr><td style="text-align: left;">最大采样率偏移</td><td style="text-align: left;">50 Hz</td></tr><tr><td style="text-align: left;">载波频率偏移标准差</td><td style="text-align: left;">0.01 Hz</td></tr><tr><td style="text-align: left;">最大载波频率偏移</td><td style="text-align: left;">500 Hz</td></tr><tr><td style="text-align: left;">频率选择性衰落正弦波数</td><td style="text-align: left;">8</td></tr><tr><td style="text-align: left;">调制方式</td><td style="text-align: left;"><strong>数字 (8 种)</strong>: 8PSK, BPSK,CPFSK, GFSK, PAM4, 16QAM, 64QAM, QPSK<br><strong>模拟 (3 种)</strong>:AM-DSB, AM-SSB, WBFM</td></tr><tr><td style="text-align: left;">信噪比 (SNR) 范围</td><td style="text-align: left;">-20 dB ~ 18 dB (间隔 2 dB)</td></tr><tr><td style="text-align: left;">采样率</td><td style="text-align: left;">200 kHz</td></tr><tr><td style="text-align: left;">延迟设置</td><td style="text-align: left;">[0.0, 0.9, 1.7]</td></tr><tr><td style="text-align: left;">每个延迟对应的幅度</td><td style="text-align: left;">[1, 0.8, 0.3]</td></tr><tr><td style="text-align: left;">噪声</td><td style="text-align: left;">加性高斯白噪声 (Additive White GaussianNoise, AWGN)</td></tr><tr><td style="text-align: left;">信道环境</td><td style="text-align: left;">加性高斯白噪声 (AWGN)、选择性衰落（莱斯(Rician) + 瑞利 (Rayleigh)）、中心频率偏移 (CFO)、采样率偏移 (SRO)</td></tr></tbody></table><p>本模型以 Resnet50 网络为基础，结合多种注意力机制，在进行 30轮训练的基础上，可实现对以上十一种调制模式的识别，整体准确率达91.29%，信噪比为 16.0dB 时，准确率可达 99.76%。</p><h2 id="结果可视化">结果可视化</h2><p><strong>整体准确率趋势图</strong></p><figure><img src="/img/Resnet-SPPR/1.png" alt="整体准确率趋势图" /><figcaption aria-hidden="true">整体准确率趋势图</figcaption></figure><p><strong>每个调制模式在不同信噪比下的准确性</strong></p><figure><img src="/img/Resnet-SPPR/2.png"alt="每个调制模式在不同信噪比下的准确性" /><figcaptionaria-hidden="true">每个调制模式在不同信噪比下的准确性</figcaption></figure><p><strong>模型损失曲线</strong></p><figure><img src="/img/Resnet-SPPR/3.png" alt="模型损失曲线" /><figcaption aria-hidden="true">模型损失曲线</figcaption></figure><p><strong>整体归一化混淆矩阵</strong></p><figure><img src="/img/Resnet-SPPR/4.png" alt="整体归一化混淆矩阵" /><figcaption aria-hidden="true">整体归一化混淆矩阵</figcaption></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>无线通信</category>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>信号调制--AM调制</title>
     <link href="/2025/06/02/AM%E8%B0%83%E5%88%B6/"/>
     <url>/2025/06/02/AM%E8%B0%83%E5%88%B6/</url>
